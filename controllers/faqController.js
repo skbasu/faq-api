@@ -9,11 +9,9 @@ export const getFAQs = async (req, res) => {
 
         const cachedData = await redisClient.get(cacheKey);
         if (cachedData) {
-            //console.log('Cache hit');
             return res.json(JSON.parse(cachedData));
         }
 
-        //console.log('Cache miss');
         const projection = lang === 'en'
             ? { question: 1, answer: 1 }
             : { question: `$${`question_${lang}`}`, answer: `$${`answer_${lang}`}` };
