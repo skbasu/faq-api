@@ -127,18 +127,3 @@ We welcome contributions! Follow these steps:
 5. **Submit a Pull Request**
 
 Please ensure your code follows the existing style and includes necessary tests.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Contact
-
-For questions, open an issue or reach out at `your-email@example.com`.
-
----
-
