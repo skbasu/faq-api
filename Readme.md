@@ -126,4 +126,4 @@ We welcome contributions! Follow these steps:
 4. **Push to GitHub** (`git push origin feature-name`)
 5. **Submit a Pull Request**
 
-Please ensure your code follows the existing style and includes necessary tests.
+Please ensure that your code follows the existing style and includes necessary tests.
