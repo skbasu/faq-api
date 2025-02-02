@@ -3,7 +3,7 @@
 A Node.js-based FAQ Management API that supports multilingual FAQs using Express, MongoDB, Redis for caching, and Google Translate API for automatic translations.
 
 ## Features
-- CRUD operations for FAQs
+- Creating FAQs
 - Automatic translation of FAQs into Hindi and Bengali
 - Redis caching for improved performance
 - MongoDB for persistent storage
