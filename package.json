@@ -1,0 +1,37 @@
+{
+  "name": "assessment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "mocha tests/**/*.test.js --timeout 10000"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/mongoose": "^4.1.0",
+    "@adminjs/passwords": "^4.0.0",
+    "@vitalets/google-translate-api": "^9.2.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "google-translate-api": "^2.3.0",
+    "mongoose": "^8.9.6",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7",
+    "quill": "^2.0.3",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.2",
+    "chai-http": "^5.1.1",
+    "mocha": "^11.1.0",
+    "sinon": "^19.0.2",
+    "supertest": "^7.0.0"
+  }
+}

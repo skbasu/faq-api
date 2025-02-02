@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Editor</title>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; padding: 20px; }
+        .editor-container { margin: 20px 0; }
+        label { display: block; margin-bottom: 10px; font-weight: bold; }
+        button { 
+            padding: 10px 20px; 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+        }
+        button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <h1>FAQ Editor</h1>
+    <form id="faqForm">
+        <div class="editor-container">
+            <label for="questionEditor">Question:</label>
+            <textarea name="question" id="questionEditor"></textarea>
+        </div>
+        
+        <div class="editor-container">
+            <label for="answerEditor">Answer:</label>
+            <textarea name="answer" id="answerEditor"></textarea>
+        </div>
+        
+        <button type="submit">Save FAQ</button>
+    </form>
+
+    <script>
+        // Initialize CKEditor with basic configuration
+        CKEDITOR.replace('questionEditor', {
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'lists', items: ['NumberedList', 'BulletedList'] },
+                { name: 'document', items: ['Source'] }
+            ]
+        });
+
+        CKEDITOR.replace('answerEditor', {
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'lists', items: ['NumberedList', 'BulletedList'] },
+                { name: 'document', items: ['Source'] }
+            ]
+        });
+
+        // Form submission handler
+        document.getElementById('faqForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const question = CKEDITOR.instances.questionEditor.getData();
+            const answer = CKEDITOR.instances.answerEditor.getData();
+
+            try {
+                const response = await fetch('/api/faqs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question, answer }),
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('FAQ saved successfully!');
+                    CKEDITOR.instances.questionEditor.setData('');
+                    CKEDITOR.instances.answerEditor.setData('');
+                } else {
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                console.error('Submission error:', error.message);
+                alert('Failed to save FAQ. Check console for details.');
+            }
+        });
+    </script>
+</body>
+</html>
